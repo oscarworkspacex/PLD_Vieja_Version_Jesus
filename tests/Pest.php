@@ -13,6 +13,17 @@
 
 pest()->extend(Tests\TestCase::class)
     ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
+    ->beforeEach(function () {
+        // users.status tiene una llave foranea a la tabla status, asi que
+        // estos registros de referencia tienen que existir antes de crear
+        // cualquier usuario. RefreshDatabase corre migraciones pero no
+        // seeders, asi que sin esto todo test que instancie un usuario falla.
+        App\Models\Status::insert([
+            ['id' => 1, 'name' => 'Enabled', 'description' => 'Activo'],
+            ['id' => 2, 'name' => 'Disabled', 'description' => 'Inactivo'],
+            ['id' => 3, 'name' => 'Deleted', 'description' => 'Eliminado'],
+        ]);
+    })
     ->in('Feature');
 
 /*
