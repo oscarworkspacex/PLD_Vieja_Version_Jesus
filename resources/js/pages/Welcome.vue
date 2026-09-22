@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { dashboard, login, register } from '@/routes';
+// `register` no se importa de Wayfinder: con el registro cerrado (el default) no
+// existe esa ruta y el import romperia la compilacion; los enlaces usan la URL literal.
+import { dashboard, login } from '@/routes';
 import { Head, Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -85,7 +87,7 @@ withDefaults(
                     </Link>
                     <Link
                         v-if="canRegister"
-                        :href="register()"
+                        href="/register"
                             class="rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 px-4 py-2 font-semibold text-white shadow-lg shadow-cyan-500/25 transition hover:brightness-105"
                     >
                             Crear cuenta
@@ -134,7 +136,7 @@ withDefaults(
                         </Link>
                         <Link
                             v-if="canRegister"
-                            :href="register()"
+                            href="/register"
                             class="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white/90 backdrop-blur transition hover:border-white/30 hover:text-white"
                         >
                             Agendar demo guiada
@@ -434,7 +436,7 @@ withDefaults(
                     </button>
                     <Link
                         v-if="canRegister"
-                        :href="register()"
+                        href="/register"
                         class="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white/90 backdrop-blur transition hover:border-white/35"
                     >
                         Soporte técnico

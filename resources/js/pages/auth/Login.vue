@@ -7,11 +7,15 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
 import AuthBase from '@/layouts/AuthLayout.vue';
-import { register } from '@/routes';
 import { store } from '@/routes/login';
 import { request } from '@/routes/password';
 import { Form, Head } from '@inertiajs/vue3';
 
+/**
+ * El registro publico esta cerrado por defecto, asi que Fortify no publica sus
+ * rutas y Wayfinder no genera `register`. El enlace apunta a la URL literal para
+ * que la pantalla compile con el registro abierto o cerrado.
+ */
 defineProps<{
     status?: string;
     canResetPassword: boolean;
@@ -104,7 +108,7 @@ defineProps<{
                 v-if="canRegister"
             >
                 Don't have an account?
-                <TextLink :href="register()" :tabindex="5">Registrarse</TextLink>
+                <TextLink href="/register" :tabindex="5">Registrarse</TextLink>
             </div>
         </Form>
     </AuthBase>

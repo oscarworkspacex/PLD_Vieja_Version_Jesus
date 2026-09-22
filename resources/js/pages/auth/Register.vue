@@ -7,8 +7,14 @@ import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
 import AuthBase from '@/layouts/AuthLayout.vue';
 import { login } from '@/routes';
-import { store } from '@/routes/register';
 import { Form, Head } from '@inertiajs/vue3';
+
+/**
+ * El registro publico esta cerrado por defecto, asi que Fortify no publica sus
+ * rutas y Wayfinder no genera el modulo `@/routes/register`. Esta pantalla se
+ * conserva porque la variable de entorno puede reabrirlo, y por eso apunta a la
+ * URL literal: importar ese modulo romperia la compilacion con el registro cerrado.
+ */
 </script>
 
 <template>
@@ -19,7 +25,7 @@ import { Form, Head } from '@inertiajs/vue3';
         <Head title="Register" />
 
         <Form
-            :action="store.url()"
+            action="/register"
             method="post"
             :reset-on-success="['password', 'password_confirmation']"
             v-slot="{ errors, processing }"
