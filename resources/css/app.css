@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+/* Ant Design reset inside the base layer so Tailwind utilities take precedence */
+@import 'ant-design-vue/dist/reset.css' layer(base);
+
 @import 'tw-animate-css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -267,9 +270,4 @@
     border-color: rgba(74, 191, 198, 0.45) !important;
     color: #d8f9ff !important;
     background: rgba(8, 45, 66, 0.9) !important;
-}
-
-/* Custom input color override */
-input.w-full {
-    color: rgba(8, 31, 53, 1);
 }
