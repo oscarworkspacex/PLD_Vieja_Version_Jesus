@@ -144,7 +144,13 @@ return [
     */
 
     'features' => [
-        Features::registration(),
+        // El registro público está CERRADO por defecto: las cuentas las crea
+        // root desde la gestión de usuarios, y las rutas de admin solo exigen
+        // sesión, así que una cuenta auto-creada vería todo. La variable de
+        // entorno puede reabrirlo, y por eso la pantalla de registro sigue existiendo.
+        ...(filter_var(env('FORTIFY_REGISTRATION_ENABLED', false), FILTER_VALIDATE_BOOL)
+            ? [Features::registration()]
+            : []),
         Features::resetPasswords(),
         Features::emailVerification(),
         Features::twoFactorAuthentication([

@@ -9,7 +9,7 @@ import admin from '@/routes/admin';
 
 // Get numeralFormat from global properties
 const instance = getCurrentInstance();
-const numeralFormat = instance?.appContext.config.globalProperties.numeralFormat || ((value: number, format: string = '0,0') => value.toLocaleString());
+const numeralFormat = instance?.appContext.config.globalProperties.numeralFormat || ((value: number) => value.toLocaleString());
 
 // Importar componentes modulares
 import MedioContacto from '@/components/ClientCapture/MedioContacto.vue';
