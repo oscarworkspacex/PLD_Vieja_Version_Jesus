@@ -6,7 +6,6 @@ import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
 import { initializeTheme } from './composables/useAppearance';
 import Antd from 'ant-design-vue';
-import 'ant-design-vue/dist/reset.css';
 import VueNumerals from "vue-numerals";
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
